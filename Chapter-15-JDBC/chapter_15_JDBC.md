@@ -48,11 +48,11 @@ try (PreparedStatement ps = conn.prepareStatement("SELECT * FROM exhibits")) {
 <br>
 
 - An instance of a **PreparedStatement** represents a SQL statement that you want to run using the Connection . It does not execute the query yet!
-  <br>
+<br>
 
 #### Executing a PreparedStatement
 - DELETE , INSERT , or UPDATE, they typically use a method called **executeUpdate()**.
-  <br>
+<br>
 
 #### Modifying Data with executeUpdate()
 <br>
@@ -96,7 +96,7 @@ try (var ps = conn.prepareStatement(sql);
 
 #### Working with Parameters
 - A **PreparedStatement** allows us to set parameters. Instead of specifying the three values in the SQL, we can use a question mark (?). A bind variable is a placeholder that lets you specify the actual values at runtime.
-  <br>
+<br>
 -
 ```
 String sql = "INSERT INTO names VALUES(?, ?, ?)";
