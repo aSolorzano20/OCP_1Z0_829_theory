@@ -58,8 +58,8 @@ public interface HasBigEyes extends Nocturnal {}
 #### Mixing Class and Interface Keywords
 - A class can implement an interface.
 - A class cannot extend an interface.
-- an interface can extend another interface.
-- an interface cannot implement another interface.
+- An interface can extend another interface.
+- An interface cannot implement another interface.
 <br>
 
 
@@ -107,7 +107,7 @@ public class Tiger implements Herbivore, Omnivore { // DOES NOT COMPILE
 <br>
 
 - A method with a membership type of class is shared among all instances of the interface.
-- a method with a membership type of instance is associated with a particular instance of the interface.
+- A method with a membership type of instance is associated with a particular instance of the interface.
 <br>
 
 ### Writing a default Interface Method
@@ -260,10 +260,10 @@ public sealed class Snake {
 <br>
 
 #### Sealing Interfaces
-- interfaces can also be sealed.
+- Interfaces can also be sealed.
 - The sealed interface must appear in the same package or named module as the classes or interfaces that directly extend or implement it.
-- a sealed interface is that the permits list can apply to a class that implements the interface or an interface that extends the interface.
-- interfaces that extend a sealed interface can only be marked sealed or non-sealed. They cannot be marked final.
+- A sealed interface is that the permits list can apply to a class that implements the interface or an interface that extends the interface.
+- Interfaces that extend a sealed interface can only be marked sealed or non-sealed. They cannot be marked final.
 <br>
 
 ### Reviewing Sealed Class Rules
@@ -285,7 +285,7 @@ public sealed class Snake {
 <br>
 - A record is a special type of data-oriented class in which the compiler inserts boilerplate code for you.
 - The compiler inserts useful implementations of the Object methods equals(), hashCode(), and toString().
-- it creates a constructor for you with the parameters in the same order in which they appear in the record declaration.
+- It creates a constructor for you with the parameters in the same order in which they appear in the record declaration.
 - For each field, it also creates an accessor as the field name, plus a set of parentheses. Unlike traditional POJOs or JavaBeans, the methods don’t have the prefix get or is .
 <br>
 
@@ -317,8 +317,9 @@ public record Crane() {}
 - A compact constructor is a special type of constructor used for records to process validation and transformations succinctly.
 ![Declaring a compact constructor](images/figure_7_7.png "Declaring a compact constructor")
 <br>
+
 - Java will execute the full constructor after the compact constructor.
-- A ***compact constructor*** is declared without parentheses,
+- A ***compact constructor*** is declared without parentheses.
 - ***Compact constructors*** give you the opportunity to apply transformations to any of the input values.
 - ***Compact constructors*** can modify the constructor parameters, they cannot modify the fields of the record.
 <br>
@@ -336,9 +337,9 @@ public record Crane(int numberEggs, String name) {
 
 #### Customizing Records
 - Overloaded and compact constructors
-- Instance methods including overriding any provided methods (accessors, equals(), hashCode() , toString() )
+- Instance methods including overriding any provided methods (accessors, equals(), hashCode() , toString())
 - Nested classes, interfaces, annotations, enum, and records
-- you can add methods, static fields, and other data types, you cannot add instance fields outside the record declaration, even if they are private.
+- You can add methods, static fields, and other data types, you cannot add instance fields outside the record declaration, even if they are private.
 - Do not support instance initializers. All initialization for the fields of a record must happen in a constructor.
 <br>
 
@@ -364,6 +365,7 @@ Inner classes have the following properties:
 - It can additionally be marked private or protected.
 - The enclosing class can refer to the fields and methods of the static nested class.
 <br>
+
 ```
 public class Park {
     static class Ride {
@@ -382,7 +384,7 @@ public class Park {
 A local class is a nested class defined within a method. Like local variables, a local class declaration does not exist until the method is invoked
 Local classes have the following properties:
 - They do not have an access modifier.
-- They can be declared final or abstract .
+- They can be declared final or abstract.
 - They have access to all fields and methods of the enclosing class (when defined in an instance method).
 - They can access final and effectively final local variables.
 <br>
@@ -399,7 +401,7 @@ public class ZooGiftShop {
         SaleTodayOnly sale = new SaleTodayOnly() {
             int dollarsOff() { return 3; }
         }; // Don't forget the semicolon!
-        return basePrice -­ sale.dollarsOff();
+        return basePrice - sale.dollarsOff();
     }
 }
 ```
