@@ -109,11 +109,11 @@ Arrays.sort(strings);
 
 #### Searching
 #### Table: 15.6 ResultSet get methods
-| Scenario                                | Result                                                                                                                         |
-|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| Target element found in sorted array    | Index of match                                                                                                                 |
-| arget element not found in sorted array | Negative value showing one smaller than the negative of the index, where a match needs to be inserted to preserve sorted order |
-| Unsorted array                          | A surprise; this result is undefined                                                                                           |
+| Scenario                                 | Result                                                                                                                         |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Target element found in sorted array     | Index of match                                                                                                                 |
+| Target element not found in sorted array | Negative value showing one smaller than the negative of the index, where a match needs to be inserted to preserve sorted order |
+| Unsorted array                           | A surprise; this result is undefined                                                                                           |
 <br>
 
 #### Using compare()
@@ -135,9 +135,9 @@ Finally, what does smaller mean? Here are some more rules that apply here and to
 
 - null is smaller than any other value.
 - For numbers, normal numeric order applies.
-- For strings, one is smaller if it is a prefix of another.
-- For strings/characters, numbers are smaller than letters.
-- For strings/characters, uppercase is smaller than lowercase.
+- For Strings, one is smaller if it is a prefix of another.
+- For Strings/characters, numbers are smaller than letters.
+- For Strings/characters, uppercase is smaller than lowercase.
 <br>
 
 #### Table: 4.4 Arrays.compare() examples
@@ -208,8 +208,8 @@ args[1] = new int[3];
 
 ## Working with Dates and Times
 #### Creating Dates and Times
-- ***LocalDate*** Contains just a date—no time and no time zone.
-- ***LocalTime*** Contains just a time—no date and no time zone.
+- ***LocalDate*** Contains just a date-no time and no time zone.
+- ***LocalTime*** Contains just a time-no date and no time zone.
 - ***LocalDateTime*** Contains both a date and time but no time zone.
 - ***ZonedDateTime*** Contains a date, time, and time zone.
 - a static method called ***now()***, which gives the current date and time.
@@ -252,7 +252,7 @@ public static LocalDate of(int year, Month month, int dayOfMonth);
 #### Working with Durations
 - is intended for smaller units of time.
 - You can specify the number of days, hours, minutes, seconds, or nanoseconds.
-- Duration works roughly the same way as Period , except it is used with objects that have time.
+- Duration works roughly the same way as Period, except it is used with objects that have time.
 - Duration doesn’t have a factory method that takes multiple units like Period does.
 <br>
 

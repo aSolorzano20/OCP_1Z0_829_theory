@@ -23,13 +23,13 @@ A single-threaded process is one that contains exactly one thread, whereas a mul
 
 ## Submitting Tasks
 ### TABLE 13.1 ExecutorService methods
-| Method name                                                                                              | Description                                                                                                                                       |
-|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| void execute(Runnable command)                                                                           | Executes a *Runnable* task at some point in the future                                                                                            |
-| Future<?> submit(Runnable task)                                                                          | Executes a *Runnable* task at some point in the future and returns a *Future* representing the task                                               |
-| <T> Future<T> submit(Callable<T> task)                                                                   | Executes a *Callable* task at some point in the future and returns a *Future* representing the pending results of the task                        |
-| <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException       | Executes the given tasks and waits for all tasks to complete. Returns a *List* of *Future* instances, in the same order th                        |
-| <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException | Executes the given tasks and waits for at least one to complete. Returns a *Future* instance for a complete task and cancels any unfinished tasks |
+| Method name                                                                                                                      | Description                                                                                                                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| void execute(Runnable command)                                                                                                   | Executes *Runnable* task at some point in the future.                                                                                                        |
+| Future&lt;?&gt; submit(Runnable task)                                                                                            | Executes *Runnable* task at some point in the future and returns *Future* representing task.                                                                 |
+| &lt;T&gt; Future&lt;T> submit(Callable&lt;T&gt; task)                                                                            | Executes *Callable* task at some point in the future and returns *Future* representing pending results of task.                                              |
+| &lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) throws InterruptedException | Executes given tasks and waits for all tasks to complete. Returns *List* of *Future* instances, in the same order in which they were in original collection. |
+| &lt;T&gt; T invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) throws InterruptedException, ExecutionException       | Executes given tasks and waits for at least one to complete.                                                                                                 |
 <br>
 
 ### TABLE 13.2 Future methods
@@ -171,20 +171,20 @@ static synchronized void dance() {
 
 ### TABLE 13.10 Synchronized collections methods
 
-synchronizedCollection(Collection<T> c)
-synchronizedList(List<T> list)
-synchronizedMap(Map<K,V> m)
-synchronizedNavigableMap(NavigableMap<K,V> m)
-synchronizedNavigableSet(NavigableSet<T> s)
-synchronizedSet(Set<T> s)
-synchronizedSortedMap(SortedMap<K,V> m)
-synchronizedSortedSet(SortedSet<T> s)
+***synchronizedCollection***(Collection<T> c)<br>
+***synchronizedList***(List<T> list)<br>
+***synchronizedMap***(Map<K,V> m)<br>
+***synchronizedNavigableMap***(NavigableMap<K,V> m)<br>
+***synchronizedNavigableSet***(NavigableSet<T> s)<br>
+***synchronizedSet***(Set<T> s)<br>
+***synchronizedSortedMap***(SortedMap<K,V> m)<br>
+***synchronizedSortedSet***(SortedSet<T> s)<br>
 <br>
 
 ### Identifying Threading Problems
 - Threads in a CyclicBarrier will each wait for the barrier limit to be reached before continuing.
 - Liveness is the ability of an application to be able to execute in a timely manner.
-- liveness problems are often the result of a thread entering a BLOCKING or WAITING state forever
+- Liveness problems are often the result of a thread entering a BLOCKING or WAITING state forever
 <br>
 
 #### Deadlock

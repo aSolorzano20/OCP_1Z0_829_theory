@@ -4,8 +4,8 @@
 - A path is a representation of a file or directory within a file system.
 - Unix-based systems use the forward slash, /.
 - Windows-based systems use the back-slash, \.
-- The **absolute path** of a file or directory is the full path from the root directory to the file or directory, including all subdirectories that contain the file or directory.
-- The ***relative path** of a file or directory is the path from the current working directory to the file or directory.
+- The ***absolute path*** of a file or directory is the full path from the root directory to the file or directory, including all subdirectories that contain the file or directory.
+- The ***relative path*** of a file or directory is the path from the current working directory to the file or directory.
 <br>
 
 - If a path starts with a forward slash (/), it is absolute, with / as the root directory, such as /bird/parrot.png.
@@ -44,7 +44,7 @@
 | Description                                         | I/O file instance method | NIO.2 Path instance method |
 |-----------------------------------------------------|--------------------------|----------------------------|
 | Gets name of file/directory                         | getName()                | getFileName()              |
-| Retrieves parent directory or null if there is none | getParent()              | getParent                  |
+| Retrieves parent directory or null if there is none | getParent()              | getParent()                |
 | Checks if file/directory is absolute path           | isAbsolute()             | isAbsolute()               |
 <br>
 
@@ -121,7 +121,8 @@ System.out.println(path1.resolve(path2));
 /cats/../panther/food
 ```
 <br>
-- resolve() does not clean up path symbols.
+
+- **resolve()** does not clean up path symbols.
 - If an absolute path is provided as input to the method, that is the value returned.
 <br>
 
@@ -182,6 +183,12 @@ var p3 = Path.of("../../fish.txt"); // ../../fish.txt
 - It eliminates any redundant path symbols.
 - It will join the path with the current working directory if the path is relative.
 - **toRealPath()** will throw an exception if the path does not exist.
+<br>
+
+```
+System.out.println(Paths.get("/zebra/food.txt").toRealPath());
+System.out.println(Paths.get(".././food.txt").toRealPath());
+```
 <br>
 
 #### Table: 14.6 Path APIs
@@ -247,7 +254,7 @@ Files.copy(file, directory)
 #### Moving or Renaming Paths with move()
 ```
 Files.move(Path.of("C:\\zoo"), Path.of("C:\\zoo-new"));
-Files.move(Path.of("C:\\user\\addresses.txt"),Path.of("C:\\zoo-new\\addresses2.txt"));
+Files.move(Path.of("C:\\user\\addresses.txt"), Path.of("C:\\zoo-new\\addresses2.txt"));
 ```
 <br>
 
@@ -268,12 +275,8 @@ public static boolean deleteIfExists(Path path) throws IOException
 <br>
 
 ```
-System.out.println(Files.isSameFile(
-Path.of("/animals/cobra"),
-Path.of("/animals/snake")));		// true
-System.out.println(Files.isSameFile(
-Path.of("/animals/monkey/ears.png"),
-Path.of("/animals/wolf/ears.png"))); 	// false
+System.out.println(Files.isSameFile(Path.of("/animals/cobra"), Path.of("/animals/snake"))); // true
+System.out.println(Files.isSameFile(Path.of("/animals/monkey/ears.png"), Path.of("/animals/wolf/ears.png"))); // false
 ```
 <br>
 
@@ -291,13 +294,13 @@ Differences between Byte and Character I/O Streams
 - The **byte I/O streams** are primarily used to work with binary data, such as an image or executable file.
 - The **Character I/O streams** are used to work with text files.
 <br>
-- 
+
 #### Input vs. Output Streams
 
 - The **FileOutputStream class** writes data that can be read by a **FileInputStream**.
 - The **FileWriter class** writes data that can be read by a **FileReader**.
 <br>
-- 
+
 #### Low-Level vs. High-Level Streams
 - A **low-level stream** connects directly with the source of the data, such as a file, an array, or a String.
 - A **high-level stream** is built on top of another I/O stream using wrapping.
@@ -331,9 +334,9 @@ Differences between Byte and Character I/O Streams
 | PrintWriter          | High           | Writes formatted representations of Java objects to a character stream                                         |
 <br>
 
-## Reviewing Common Read and Write Methods
+### Reviewing Common Read and Write Methods
 
-### TABLE 14.9 Common I/O stream methods
+#### TABLE 14.9 Common I/O stream methods
 | Stream Class                  | Method Name                                                                                     | Description                                                                                         |
 |-------------------------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | All input streams             | int read()                                                                                      | Reads single byte or returns ‐1 if no bytes available.                                              |
@@ -365,7 +368,9 @@ Differences between Byte and Character I/O Streams
 
 ## Serializing Data
 - **Serialization** is the process of converting an in-memory object to a byte stream. Likewise, **deserialization** is the process of converting from a byte stream into an object.
-  ![Serialization process](images/figure_14_6.png "Serialization process")
+<br>
+
+![Serialization process](images/figure_14_6.png "Serialization process")
 <br>
 
 #### Applying the Serializable Interface
@@ -381,17 +386,17 @@ Differences between Byte and Character I/O Streams
 - The class must be marked Serializable.
 - Every instance member of the class must be serializable, marked transient, or have a null value at the time of serialization.
 <br>
-- 
+
 #### Storing Data with ObjectOutputStream and ObjectInputStream
 - The **ObjectInputStream** class is used to **deserialize** an object.
 - The **ObjectOutputStream** is used to **serialize** an object.
 <br>
-- 
+
 #### Understanding the Deserialization Creation Process
 - The constructor of the serialized class, along with any instance initializers, is not called when the object is created.
 - Any static or transient fields are ignored. Values that are not provided will be given their default Java value.
 <br>
-- 
+
 ## Working with Advanced APIs
 ### Manipulating Input Streams
 

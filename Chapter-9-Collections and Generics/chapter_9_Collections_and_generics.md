@@ -3,6 +3,8 @@
 - ***Set***: A set is a collection that does not allow duplicate entries.
 - ***Queue***: A queue is a collection that orders its elements in a specific order for processing. A Deque is a subinterface of Queue that allows access at both ends.
 - ***Map***: A map is a collection that maps keys
+<br>
+
 ![Java Collections Framework](images/figure_9_1.png "Java Collections Framework")
 <br>
 
@@ -11,11 +13,13 @@ The ***diamond operator***(<>) is a shorthand notation that allows you to omit t
 ```
 List<Integer> list = new ArrayList<>();
 Map<Long,List<Integer>> mapOfLists = new HashMap<>();
-Removing with Conditions
 ```
 <br>
 
+#### Removing with Conditions
 - The ***removeIf()*** method removes all elements that match a condition.
+<br>
+
 ```
 public boolean removeIf(Predicate<? super E> filter);
 ```
@@ -75,8 +79,8 @@ public boolean removeIf(Predicate<? super E> filter);
 |---------------------------|--------------------------------------------------------------|
 | Add to front              | public void addFirst(E e) <br>public boolean offerFirst(E e) |
 | Add to back               | public void addLast(E e) <br>public boolean offerLast(E e)>  |
-| read from front           | public E getFirst() <br>public E peekFirst()                 |
-| read from back            | public E getLast() <br>public E peekLast()                   |
+| Read from front           | public E getFirst() <br>public E peekFirst()                 |
+| Read from back            | public E getLast() <br>public E peekLast()                   |
 | Get and remove from front | public E removeFirst() <br>public E pollFirst()              |
 | Get and remove from front | public E removeLast() <br>public E pollLast()                |
 <br>
@@ -104,7 +108,7 @@ public boolean removeIf(Predicate<? super E> filter);
 | Method                                                   | Description                                                                                               |
 |----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | public void clear()                                      | Removes all keys and values from map.                                                                     |
-| public boolean containsVKey(Object key)                  | Returns whether key is in map.                                                                            |
+| public boolean containsKey(Object key)                   | Returns whether key is in map.                                                                            |
 | public boolean containsValue(Object value)               | Returns whether value is map.                                                                             |
 | public set<Map.Entry<k,v>> entrySet()                    | Returns Set of key/value pairs.                                                                           |
 | public void forEach(BiConsumer<K key, V value>)          | Loops through each key/value pair.                                                                        |
@@ -120,6 +124,7 @@ public boolean removeIf(Predicate<? super E> filter);
 | public void replaceAll(BiFunction<K, V, V> func)         | Replaces each value with results of function.                                                             |
 | public int size()                                        | Returns number of entries(key/value pairs) in map.                                                        |
 | public Collection<V> values()                            | Returns Collection of all values.                                                                         |
+<br>
 
 #### Merging Data
 ```
@@ -177,7 +182,9 @@ public int compareTo(Duck d) {
 <br>
 
 - id - a.id sorts in ***ascending order***, and a.id - id sorts in ***descending order***.
-- There are three rules to know:
+<br>
+
+#### There are three rules to know:
 - The number 0 is returned when the current object is equivalent to the argument to compareTo().
 - A negative number (less than 0) is returned when the current object is smaller than the argument to compareTo().
 - A positive number (greater than 0) is returned when the current object is larger than the argument to compareTo().

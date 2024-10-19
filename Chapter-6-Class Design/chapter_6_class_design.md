@@ -7,12 +7,12 @@
 ![Subclass and superclass declarations](images/figure_6_1.png "Subclass and superclass declarations")
 <br>
 
-- all public and protected members are automatically available as part of the child class. If the two classes are in the same package, then package members are available to the child class.
+- All public and protected members are automatically available as part of the child class. If the two classes are in the same package, then package members are available to the child class.
 - private members are restricted to the class they are defined in and are never available via inheritance.
 <br>
 
 #### Class Modifiers
-#### Table: 15.6 ResultSet get methods
+#### Table: 6.1 Class modifiers
 | Modifier   | Description                                                                                           |
 |------------|-------------------------------------------------------------------------------------------------------|
 | final      | The class may not be extended.                                                                        |
@@ -26,10 +26,10 @@
 <br>
 
 #### Inheriting Object
-- All classes inherit from a single class: java.lang.Object , or Object for short.
+- All classes inherit from a single class: java.lang.Object, or Object for short.
 - Object is the only class that doesn’t have a parent class.
 - when you define a new class that extends an existing class, Java does not automatically extend the Object class.
-- Primitive types such as int and boolean do not inherit from Object , since they are not classes.
+- Primitive types such as int and boolean do not inherit from Object, since they are not classes.
 <br>
 
 #### Applying Class Access Modifiers
@@ -62,7 +62,7 @@
 - The default constructor has an empty parameter list and an empty body.
 - This happens during the compile step.
 - It only makes an appearance in the compiled file with the .class extension.
-- the compiler only inserts the default constructor when no constructors are defined.
+- The compiler only inserts the default constructor when no constructors are defined.
 - ***private*** constructors in a class tells the compiler not to provide a default no-­argument constructor.
 - This is useful when a class has only static methods
 <br>
@@ -76,17 +76,18 @@
 <br>
 
 #### Rules you should know about constructors
-- A class can contain many overloaded constructors, provided the signature for each is distinct.
-- The compiler inserts a default no-argument constructor if no constructors are declared.
-- If a constructor calls this(), then it must be the first line of the constructor.
-- Java does not allow cyclic constructor calls.
+1. The first statement of every constructor is a call to another constructor within the class using this() , or a call to a constructor in the direct parent class using super() .
+2. The super() call may not be used after the first statement of the constructor.
+3. If no super() call is declared in a constructor, Java will insert a no-argument super() as the first statement of the constructor.
+4. If the parent doesn’t have a no-argument constructor and the child doesn’t define any constructors, the compiler will throw an error and try to insert a default no-argument constructor into the child class.
+5. If the parent doesn’t have a no-argument constructor, the compiler requires an explicit call to a parent constructor in each child constructor.
 <br>
 
 #### Calling Parent Constructors with super()
 - The first statement of every constructor is a call to a parent constructor using ***super()*** or another constructor in the class using ***this()***.
 - ***super***, is used to reference members of the parent class,
 - ***super()***, calls a parent constructor.
-- calling ***super()*** can only be used as the first statement of the constructor.
+- Calling ***super()*** can only be used as the first statement of the constructor.
 <br>
 
 #### Understanding Compiler Enhancements
@@ -94,7 +95,7 @@
 - super() always refers to the most direct parent.
 <br>
 
-#### three constructor rules
+#### Three constructor rules
 - The first line of every constructor is a call to a parent constructor using ***super()*** or an overloaded constructor using ***this()***.
 - If the constructor does not contain a ***this()*** or ***super()*** reference, then the compiler automatically inserts super() with no arguments as the first line of the constructor.
 - If a constructor calls ***super()***, then it must be the first line of the constructor.
@@ -113,8 +114,8 @@
 - final static variables must be explicitly assigned a value exactly once.
 - They can be assigned values in the line in which they are declared or in an instance initializer.
 - final instance fields can also be set in a constructor.
-- by the time the constructor completes, all final instance variables must be assigned a value exactly once.
-- local final variables, which are not required to have a value unless they are actually used, final instance variables must be assigned a value.
+- By the time the constructor completes, all final instance variables must be assigned a value exactly once.
+- Local final variables, which are not required to have a value unless they are actually used, final instance variables must be assigned a value.
 - each constructor is reviewed individually.
 - The compiler detects that a value is never set for type and reports an error on the line where the constructor is declared.
 - final instance variable is assigned a value exactly once.
@@ -139,7 +140,7 @@
 <br>
 
 #### Overriding a Method
-- when a subclass declares a new implementation for an inherited method with the same signature and compatible return type.
+- When a subclass declares a new implementation for an inherited method with the same signature and compatible return type.
 <br>
 
 #### rules.
@@ -169,27 +170,23 @@
 <br>
 
 ## Creating Abstract Classes
-#### Introducing Abstract Classes
-- An ***abstract class*** is a class declared with the abstract modifier that cannot be instantiated directly and may contain abstract methods.
-- An ***abstract method*** is a method declared with the abstract modifier that does not define a body.
-- An ***abstract method*** forces subclasses to override the method.
-<br>
+#### Introducing Abstract Classes - Rules
+1. Abstract classes cannot be instantiated directly.
+2. Abstract classes may be defined with any number, including zero, of abstract and non-abstract methods.
+3. Abstract classes may not be marked as private or final.
+4. An abstract class that extends another abstract class inherits all of its abstract methods as its own abstract methods.
+5. The first concrete class that extends an abstract class must provide an implementation for all of the inherited abstract methods.
 
-#### rules
-- Only instance methods can be marked abstract within a class, not variables, constructors, or static methods.
-- An abstract method can only be declared in an abstract class.
-- A non-abstract class that extends an abstract class must implement all inherited abstract methods.
-- Overriding an abstract method follows the existing rules for overriding methods that you learned about earlier in the chapter.
-- An abstract class can be initialized, but only as part of the instantiation of a non-abstract subclass.
-<br>
 
-#### Declaring Abstract Methods
-- An ***abstract method*** is always declared without a body. It also includes a semicolon (;).
-- An ***abstract class*** can include all of the same members as a non-abstract class, including variables, static and instance methods, constructors, etc.
-- An ***abstract class*** is not required to include any abstract methods.
-- Like the ***final modifier***, the abstract modifier can be placed before or after the access modifier in class and method declarations.
-- The ***abstract modifier*** cannot be placed after the class keyword in a class declaration or after the return type in a method declaration.
-<br>
+#### Declaring Abstract Methods - Rules
+1. Abstract methods may only be defined in abstract classes.
+2. Abstract methods may not be declared private or final .
+3. Abstract methods must not provide a method body/implementation in the abstract
+   class for which is it declared.
+4. Implementing an abstract method in a subclass follows the same rules for overriding a
+   method. For example, the name and signature must be the same, and the visibility of
+   the method in the subclass must be at least as accessible as the method in the parent
+   class.
 
 #### Creating a Concrete Class
 - A concrete class is a non-abstract class.

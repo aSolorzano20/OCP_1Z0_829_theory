@@ -16,6 +16,7 @@ public abstract interface WalksOnTwoLegs {}
 <br>
 
 - An interface cannot be instantiated
+> **_NOTE:_** An abstract class cannot to be instanced
 ```
 public class Biped {
     public static void main(String[] args) {
@@ -26,6 +27,7 @@ public class Biped {
 <br>
 
 - ***interfaces*** cannot be marked as final for the same reason that abstract classes cannot be marked as final.
+> **_NOTE:_** Marking an interface final implies no class could ever implement it
 ```
 public final interface WalksOnEightLegs {} // DOES NOT COMPILE
 ```
@@ -54,6 +56,10 @@ public interface HasBigEyes extends Nocturnal {}
 - Like an abstract class, when a concrete class inherits an interface, all of the inherited abstract methods must be implemented.
   ![Interface Inheritance](images/figure_7_3.png "Interface Inheritance")
 <br>
+
+#### There are two inheritance rules
+1. An interface that extends another interface, as well as an abstract class that implements an interface, inherits all of the abstract methods as its own abstract methods.
+2. The first concrete class that implements an interface, or extends an abstract class that implements an interface, must provide an implementation for all of the inherited abstract methods.
 
 #### Mixing Class and Interface Keywords
 - A class can implement an interface.
@@ -94,6 +100,11 @@ public class Tiger implements Herbivore, Omnivore { // DOES NOT COMPILE
 - Interface methods without the private modifier are implicitly public.
 <br>
 
+#### Interface Variables
+1. Interface variables are assumed to be public, static, and final. Therefore, marking a variable as private or protected will trigger a compiler error, as will marking any variable as abstract.
+2. The value of an interface variable must be set when it is declared since it is marked as final.
+<br>
+3. 
 #### Declaring Concrete Interface Methods
 #### Table: 7.1 Interface members types
 |                       | Membership type | Required modifiers | Implicit modifiers          | Has value or body? |
@@ -115,20 +126,23 @@ public class Tiger implements Herbivore, Omnivore { // DOES NOT COMPILE
 <br>
 
 #### Default Interface Method Definition Rules
-1. A default method may be declared only within an interface.
-2. A default method must be marked with the default keyword and include a method body.
-3. A default method is implicitly public.
-4. A default method cannot be marked abstract, final, or static.
-5. A default method may be overridden by a class that implements the interface.
+1. A ***default method*** may be declared only within an interface.
+2. A ***default method*** must be marked with the default keyword and include a method body.
+3. A ***default method*** is implicitly public.
+4. A default method cannot be marked abstract, final, or static. <br>
+> **_NOTE:_** Default interface methods cannot be marked abstract since they provide a body<br>
+They also cannot be marked as final, because they are designed so that they can be overridden in classes implementing the interfaces.<br>
+They cannot be marked static since they are associated with the instance of the class implementing the interface.<br>
+5. A ***default method*** may be overridden by a class that implements the interface.
 6. If a class inherits two or more default methods with the same method signature, then the class must override the method.
 <br>
 
 ### Declaring static Interface Methods
 #### Static Interface Method Definition Rules
-1. A static method must be marked with the static keyword and include a method body.
-2. A static method without an access modifier is implicitly public.
-3. A static method cannot be marked abstract or final.
-4. A static method is not inherited and cannot be accessed in a class implementing the interface without a reference to the interface name.
+1. A ***static method*** must be marked with the static keyword and include a method body.
+2. A ***static method*** without an access modifier is implicitly public.
+3. A ***static method*** cannot be marked abstract or final.
+4. A ***static method*** is not inherited and cannot be accessed in a class implementing the interface without a reference to the interface name.
 <br>
 
 ### Reusing Code with private Interface Methods
@@ -210,15 +224,6 @@ public enum Season implements Weather {
 <br>
 
 #### Sealed Class Keywords
-```
-public interface Weather { int getAverageTemperature(); }
-
-public enum Season implements Weather {
-    WINTER, SPRING, SUMMER, FALL;
-    public int getAverageTemperature() { return 30; }
-}
-```
-<br>
 
 - ***sealed***: Indicates that a class or interface may only be extended/implemented by named classes or interfaces
 - ***permits***: Used with the sealed keyword to list the classes and interfaces allowed
@@ -437,6 +442,40 @@ public class ZooGiftShop {
 - The type of the reference to the object determines which methods and variables are accessible to the Java program.
 <br>
 
+```
+public class Primate {
+  public boolean hasHair() {
+    return true;
+  }
+}
+
+public interface HasTail {
+  public boolean isTailStriped();
+}
+
+public class Lemur extends Primate implements HasTail {
+  public boolean isTailStriped() {
+    return false;
+  }
+
+  public int age = 10;
+  public static void main(String[] args) {
+    Lemur lemur = new Lemur();
+    System.out.println(lemur.age);
+
+    HasTail hasTail = lemur;
+    System.out.println(hasTail.isTailStriped());
+
+    Primate primate = lemur;
+    System.out.println(primate.hasHair());
+  }
+}
+```
+<br>
+
+![Object vs reference](images/figure_5_6.png "Object vs reference")
+<br>
+
 #### Casting Objects
 - Casting a reference from a subtype to a supertype doesn’t require an explicit cast.
 - Casting a reference from a supertype to a subtype requires an explicit cast.
@@ -446,4 +485,8 @@ public class ZooGiftShop {
 
 #### Polymorphism and Method Overriding
 - Polymorphism’s ability to replace methods at runtime via overriding is one of the most important properties of Java.
+<br>
 
+#### Virtual Methods
+- A virtual method is a method in which the specific implementation is not determined until runtime.
+- All non-final, non-static, and non-private Java methods are considered virtual methods.

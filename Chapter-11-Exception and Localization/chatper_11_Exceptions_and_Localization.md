@@ -35,25 +35,25 @@ A program can fail for just about any reason. Here are just a few possibilities:
 ## Recognizing Exception Classes
 ### RuntimeException Classes
 #### Table: 11.2 Unchecked exceptions
-| Unchecked exception            | Description                                                                                                                                     |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| ArithmeticException            | Thrown when code attempts to divide by zero.                                                                                                    |
-| ArrayIndexOutOfBoundsException | Thrown when code uses illegal index to access array.                                                                                            |
-| ClassCastException             | Thrown when attempt is made to cast object to class of which it is not an instance.                                                             |
-| NullPointerException           | Thrown when there is a null reference where an object is required.                                                                              |
-| IllegalArgumentException       | Thrown by programmer to indicate that method has been passed illegal or inappropriate argument.                                                 |
-| NumberFormatException          | Subclass of IllegalArgumentException . Thrown when attempt is made to convert String to numeric type but String doesn’t have appropriate format |
+| Unchecked exception            | Description                                                                                                                                    |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| ArithmeticException            | Thrown when code attempts to divide by zero.                                                                                                   |
+| ArrayIndexOutOfBoundsException | Thrown when code uses illegal index to access array.                                                                                           |
+| ClassCastException             | Thrown when attempt is made to cast object to class of which it is not an instance.                                                            |
+| NullPointerException           | Thrown when there is a null reference where an object is required.                                                                             |
+| IllegalArgumentException       | Thrown by programmer to indicate that method has been passed illegal or inappropriate argument.                                                |
+| NumberFormatException          | Subclass of IllegalArgumentException. Thrown when attempt is made to convert String to numeric type but String doesn’t have appropriate format |
 <br>
 
 ### Checked Exception Classes
 #### Table: 11.2 Checked exceptions
-| Checked exception        | Description                                                                                                           |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| FileNotFoundException    | Subclass of IOException . Thrown programmatically when code tries to reference file that does not exist.              |
-| IOException              | Thrown programmatically when problem reading or writing file.                                                         |
-| NotSerializableException | Subclass of IOException . Thrown programmatically when attempting to serialize or deserialize non-serializable class. |
-| ParseException           | Indicates problem parsing input.                                                                                      |
-| SQLException             | Thrown when error related to accessing database.                                                                      |
+| Checked exception        | Description                                                                                                          |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------|
+| FileNotFoundException    | Subclass of IOException. Thrown programmatically when code tries to reference file that does not exist.              |
+| IOException              | Thrown programmatically when problem reading or writing file.                                                        |
+| NotSerializableException | Subclass of IOException. Thrown programmatically when attempting to serialize or deserialize non-serializable class. |
+| ParseException           | Indicates problem parsing input.                                                                                     |
+| SQLException             | Thrown when error related to accessing database.                                                                     |
 <br>
 
 ### Error Classes
@@ -117,6 +117,7 @@ try {
 
 #### Adding a finally Block
 - If an exception is thrown, the finally block is run after the catch block. If no exception is thrown, the finally block is run after the try block completes.
+<br>
 ![The syntax a try statement with finally](images/figure_11_4.png "The syntax a try statement with finally")
 <br>
 
@@ -148,6 +149,8 @@ public void readFile(String file) {
 
 #### Basics of Try-with-Resources
 - When multiple resources are opened, they are closed in the reverse of the order in which they were created.
+<br>
+
 ![The syntax of a basic try-with-resources statement](images/figure_11_5.png "The syntax of a basic try-with-resources statement")
 <br>
 

@@ -64,7 +64,7 @@ There are four formats for method references:
 | Type                                    | Before Colon           | After Colon | Example         | 
 |-----------------------------------------|------------------------|-------------|-----------------|
 | static methods                          | Class name             | Method name | Math::random    | 
-| Instance methods on a particular object | Instance variable name | Method name | str:startsWith  | 
+| Instance methods on a particular object | Instance variable name | Method name | str::startsWith | 
 | Instance methods on a parameter         | Class name             | Method name | String::isEmpty | 
 | Constructor                             | Class name             | new         | String::new     | 
 
@@ -117,10 +117,10 @@ public interface BiConsumer<T, U> {
 }
 
 Consumer<String> c1 = System.out::println;
-Consumer<String> c2 = x -­> System.out.println(x);
+Consumer<String> c2 = x -> System.out.println(x);
 
 BiConsumer<String, Integer> b1 = map::put;
-BiConsumer<String, Integer> b2 = (k, v) -­> map.put(k, v);
+BiConsumer<String, Integer> b2 = (k, v) -> map.put(k, v);
 ```
 <br>
 
@@ -142,12 +142,11 @@ Predicate<String> p1 = String::isEmpty;
 Predicate<String> p2 = x -> x.isEmpty();
 
 BiPredicate<String, String> b1 = String::startsWith;
-BiPredicate<String, String> b2 =
-(string, prefix) -> string.startsWith(prefix);
+BiPredicate<String, String> b2 = (string, prefix) -> string.startsWith(prefix);
 ```
 <br>
 
-## Implementing Function and BiFunction
+#### Implementing Function and BiFunction
 - A ***Function*** is responsible for turning one parameter into a value of a potentially different type and returning it.
 ```
 @FunctionalInterface
@@ -164,28 +163,37 @@ Function<String, Integer> f1 = String::length;
 Function<String, Integer> f2 = x -> x.length();
 
 BiFunction<String, String, String> b1 = String::concat;
-BiFunction<String, String, String> b2 =
-(string, toAdd) -> string.concat(toAdd);
+BiFunction<String, String, String> b2 = (string, toAdd) -> string.concat(toAdd);
 ```
 <br>
 
 #### Implementing UnaryOperator and BinaryOperator
+- They require all type parameters to be the same type. 
+- A ***UnaryOperator*** transforms its value into one of the same type.
+- A ***BinaryOperator*** merges two values into one of the same type.
 ```
 @FunctionalInterface
 public interface UnaryOperator<T> extends Function<T, T> {
     // omitted static method
 }
 
+
 @FunctionalInterface
 public interface BinaryOperator<T> extends BiFunction<T, T, T> {
     // omitted static methods
 }
 
+
 T apply(T t); // UnaryOperator
-T apply(T t1, T t2); // BinaryOperator
 
 UnaryOperator<String> u1 = String::toUpperCase;
-UnaryOperator<String> u2 = x -­> x.toUpperCase();
+UnaryOperator<String> u2 = x -> x.toUpperCase();
+
+
+T apply(T t1, T t2); // BinaryOperator
+
+BinaryOperator<String> b1 = String::concat;
+BinaryOperator<String> b2 = (string, toAdd) -> string.concat(toAdd);
 ```
 <br>
 

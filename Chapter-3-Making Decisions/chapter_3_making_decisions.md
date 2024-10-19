@@ -168,21 +168,20 @@ OUTER_LOOP: for(int[] mySimpleArray : myComplexArray) {
 <br>
 
 #### The break Statement
-- A break statement transfers the flow of control out to the enclosing statement.
+- A ***break*** statement transfers the flow of control out to the enclosing statement.
 
 ![The structure of a break statement](images/figure_3_9.png "The structure of a break statement")
 <br>
 
-- The break statement transfers control to the enclosing statement, the continue statement transfers control to the boolean expression that determines if the loop should continue.
+- The ***continue*** statement transfers control to the boolean expression that determines if the loop should continue.
 <br>
 
 #### The return Statement
-- return statements can be used to exit loops quickly and can lead to more readable code in practice.
+- The ***return*** statements can be used to exit loops quickly and can lead to more readable code in practice.
 <br>
 
 #### Unreachable Code
-- ***break***, ***continue***, and ***return***.
-- Any code placed immediately after them in the same block is considered unreachable and will not compile.
+- ***break***, ***continue***, and ***return***. any code placed immediately after them in the same block is considered unreachable and will not compile.
 <br>
 
 #### Reviewing Branching

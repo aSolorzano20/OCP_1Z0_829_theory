@@ -1,7 +1,7 @@
 ## Methods
 ### Designing Methods
 ![Method declaration](images/figure_5_1.png "Method declaration")
-- the method name and parameter list—are called the method signature.
+- The method name and parameter list-are called the method signature.
 - The method signature does not include the return type and access modifiers.
 <br>
 
@@ -20,7 +20,7 @@
 
 #### Access Modifiers
 - private The private modifier means the method can be called only from within the same class.
-- Package Access the method can be called only from a class in the same package. as package-private or default access.
+- package Access the method can be called only from a class in the same package. as package-private or default access.
 - protected can be called only from a class in the same package or a subclass.
 - public The public modifier means the method can be called from anywhere.
 <br>
@@ -93,8 +93,8 @@
 
 #### Applying Access Modifiers
 - private: Only accessible within the same class.
-- Package access: private plus other members of the same package. Sometimes referred to as package-­private or default access.
-- protected: Package access plus access within subclasses.
+- package access: private plus other members of the same package. Sometimes referred to as package-­private or default access.
+- protected: package access plus access within subclasses.
 - public: protected plus classes in the other packages.
 <br>
 
@@ -128,7 +128,7 @@
 - A static member cannot call an instance member without referencing an instance of the class.
 - A static method or instance method can call a static method because static methods don’t require an object to use.
 - Only an instance method can call another instance method on the same class without using a reference variable.
-- fact that static (and instance) variables are automatically initialized to the default value for that type, which is 0 for int.
+- Fact that static (and instance) variables are automatically initialized to the default value for that type, which is 0 for int.
 - a static method cannot call an instance method without a reference.
 <br>
 
@@ -137,13 +137,13 @@
 - They use all uppercase letters with underscores between “words.”
 - The compiler will make sure that you do not accidentally try to update a final variable.
 - We are allowed to modify the referenced object or array’s contents.
-- can do is check that we don’t try to reassign treats to point to a different object.
-- is assigned a value in a static initializer.
+- Can do is check that we don’t try to reassign treats to point to a different object.
+- Is assigned a value in a static initializer.
 - final variables must be initialized with a value.
 <br>
 
 #### static Initializers
-- they should be run when the class is first loaded.
+- They should be run when the class is first loaded.
 - All static initializers run when the class is first used, in the order they are defined.
 - final variables aren’t allowed to be reassigned.
 <br>

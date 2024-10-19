@@ -5,7 +5,8 @@
 | Method                  | When Optional is empty                       | When Optional contains value | 
 |-------------------------|----------------------------------------------|------------------------------|
 | get()                   | Throws exception                             | Returns value                |  
-| ifPresent(Consumer c)   | Returns false                                | Calls Consumer with value    |  
+| ifPresent(Consumer c)   | Does nothing                                 | Calls Consumer with value    |
+| ifPresent()             | Returns false                                | Returns true                 |
 | orElse(T other)         | Returns other parameter                      | Returns true                 |  
 | orElseGet(Supplier s)   | Returns result of calling Supplier           | Returns value                | 
 | orElseThrow()           | Throws NoSuchElementException                | Returns value                |
@@ -56,15 +57,15 @@
 <br>
 
 ### Table 10.4 Terminal stream operations
-| Method                                    | What happens for infinite streams | Return value | Reduction |
-|-------------------------------------------|-----------------------------------|--------------|-----------|
-| count()                                   | Does not terminate                | long         | Yes       |
-| min() <br>max()                           | Does not terminate                | Optional<T>  | Yes       |
-| findAny() <br>findFirst()                 | Terminates                        | Optional<T>  | No        |
-| allMatch() <br>anyMatch() <br>noneMatch() | Sometimes Terminates              | boolean      | No        |
-| forEach()                                 | Does not terminate                | void         | No        |
-| reduce()                                  | Does not terminate                | Varies       | Yes       |
-| collect()                                 | Does not terminate                | Varies       | Yes       |
+| Method                                    | What happens for infinite streams | Return value      | Reduction |
+|-------------------------------------------|-----------------------------------|-------------------|-----------|
+| count()                                   | Does not terminate                | long              | Yes       |
+| min() <br>max()                           | Does not terminate                | Optional&lt;T&gt; | Yes       |
+| findAny() <br>findFirst()                 | Terminates                        | Optional&lt;T&gt; | No        |
+| allMatch() <br>anyMatch() <br>noneMatch() | Sometimes Terminates              | boolean           | No        |
+| forEach()                                 | Does not terminate                | void              | No        |
+| reduce()                                  | Does not terminate                | Varies            | Yes       |
+| collect()                                 | Does not terminate                | Varies            | Yes       |
 <br>
 
 ### Using Common Intermediate Operations
@@ -113,39 +114,39 @@ allows us to perform a stream operation without changing the stream.
 ### Working with Primitive Streams
 #### Creating Primitive Streams
 Here are the three types of primitive streams:
-- IntStream: Used for the primitive types int , short , byte , and char
-- LongStream: Used for the primitive type long
-- DoubleStream: Used for the primitive types double and float
+- ***IntStream***: Used for the primitive types int , short , byte , and char
+- ***LongStream***: Used for the primitive type long
+- ***DoubleStream***: Used for the primitive types double and float
 <br>
 
 #### Table: 10.5 Common primitive stream methods
-| Method                                                                       | Primitive stream                          | Description                                                         | 
-|------------------------------------------------------------------------------|-------------------------------------------|---------------------------------------------------------------------|
-| OptionalDouble average()                                                     | IntStream <br>LongStream <br>DoubleStream | Arithmetic mean of elements                                         | 
-| Stream<T> boxed()                                                            | IntStream <br>LongStream <br>DoubleStream | Stream<T> where T is wrapper class associated with primitive values | 
-| OptionalInt max() <br>OptionalLong max()  <br>OptionalDouble max()           | IntStream <br>LongStream <br>DoubleStream | Maximum element of stream                                           | 
-| OptionalInt min() <br>OptionalLong min() <br>OptionalDouble min()            | IntStream <br>LongStream <br>DoubleStream | Minimum element of stream                                           | 
-| IntStream range(int a, int b) <br>LongStream range(int a, int b)             | IntStream <br>LongStream                  | Returns primitive stream from a(inclusive) to b (exclusive)         |  
-| IntStream rangeClosed(int a, int b) <br>LongStream rangeClosed(int a, int b) | IntStream <br>LongStream                  | Returns primitive stream from a(inclusive) to b (exclusive)         |  
+| Method                                                                       | Primitive stream                          | Description                                                               | 
+|------------------------------------------------------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
+| OptionalDouble average()                                                     | IntStream <br>LongStream <br>DoubleStream | Arithmetic mean of elements                                               | 
+| Stream&lt;T&gt; boxed()                                                      | IntStream <br>LongStream <br>DoubleStream | Stream&lt;T&gt; where T is wrapper class associated with primitive values | 
+| OptionalInt max() <br>OptionalLong max()  <br>OptionalDouble max()           | IntStream <br>LongStream <br>DoubleStream | Maximum element of stream                                                 | 
+| OptionalInt min() <br>OptionalLong min() <br>OptionalDouble min()            | IntStream <br>LongStream <br>DoubleStream | Minimum element of stream                                                 | 
+| IntStream range(int a, int b) <br>LongStream range(int a, int b)             | IntStream <br>LongStream                  | Returns primitive stream from a(inclusive) to b (exclusive)               |  
+| IntStream rangeClosed(int a, int b) <br>LongStream rangeClosed(int a, int b) | IntStream <br>LongStream                  | Returns primitive stream from a(inclusive) to b (exclusive)               |  
 <br>
 
 #### Mapping Streams
 #### Table: 10.6 Mapping methods between types of streams
-| Source stream class | To create Stream | To create DoubleStream | To create IntStream | To create LongStream |
-|---------------------|------------------|------------------------|---------------------|----------------------|
-| Stream<T>           | map()            | mapToDouble()          | mapToInt()          | mapToLong()          |
-| DoubleStream        | mapToObj()       | map()                  | mapToInt()          | mapToLong()          |
-| IntStream           | mapToObj()       | mapToDouble()          | map()               | mapToLong()          |
-| LongStream          | mapToObj()       | mapToDouble()          | mapToInt()          | map()                |
+| Source stream class | To create _Stream_ | To create _DoubleStream_ | To create _IntStream_ | To create _LongStream_ |
+|---------------------|--------------------|--------------------------|-----------------------|------------------------|
+| Stream&lt;T&gt;     | map()              | mapToDouble()            | mapToInt()            | mapToLong()            |
+| DoubleStream        | mapToObj()         | map()                    | mapToInt()            | mapToLong()            |
+| IntStream           | mapToObj()         | mapToDouble()            | map()                 | mapToLong()            |
+| LongStream          | mapToObj()         | mapToDouble()            | mapToInt()            | map()                  |
 <br>
 
 #### Table: 10.7 Function parameters when mapping between types of stream
-| Source stream class | To create Stream  | To create DoubleStream | To create IntStream | To create LongStream |
-|---------------------|-------------------|------------------------|---------------------|----------------------|
-| Stream<T>           | Stream<T, R>      | ToDoubleFunction<R>    | ToIntFunction<T>    | ToLongFunction<T>    |
-| DoubleStream        | DoubleFunction<R> | DoubleUnaryOperator    | DoubleToIntFunction | DoubleToLongFunction |
-| IntStream           | IntFunction<R>    | IntToDoubleFunction    | IntUnaryOperator    | IntToLongFunction    |
-| LongStream          | LongFunction<R>   | LongToDoubleFunction   | LongToIntFunction   | LongUnaryOperator    |
+| Source stream class | To create _Stream_      | To create _DoubleStream_  | To create _IntStream_  | To create _LongStream_  |
+|---------------------|-------------------------|---------------------------|------------------------|-------------------------|
+| Stream&lt;T&gt;     | Stream&lt;T, R&gt;      | ToDoubleFunction&lt;R&gt; | ToIntFunction&lt;T&gt; | ToLongFunction&lt;T&gt; |
+| DoubleStream        | DoubleFunction&lt;R&gt; | DoubleUnaryOperator       | DoubleToIntFunction    | DoubleToLongFunction    |
+| IntStream           | IntFunction&lt;R&gt;    | IntToDoubleFunction       | IntUnaryOperator       | IntToLongFunction       |
+| LongStream          | LongFunction&lt;R&gt;   | LongToDoubleFunction      | LongToIntFunction      | LongUnaryOperator       |
 <br>
 
 #### Using Optional with Primitive Streams
@@ -178,11 +179,11 @@ private static int range(IntStream ints) {
 
 #### Using a Spliterator
 #### Table: 10.9 Spliterator methods
-| Method                               | Description                                                                                                                                                                                                   |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Spliterator<T> trySplit()            | Return Spliterator containing ideally half of the data, which is removed from current Spliterator. This method can be called multiple times and will eventually return null when data is no longer splittable |
-| void forEachRemaining(Consumer<T> c) | Processes remaining elements in Spliterator.                                                                                                                                                                  |
-| boolean tryAdvance(Consumer<T> c)    | Processes single element form spliterator if any remain. Returns whether element was processed.                                                                                                               |
+| Method                                     | Description                                                                                                                                                                                                   |
+|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Spliterator&lt;T&gt; trySplit()            | Return Spliterator containing ideally half of the data, which is removed from current Spliterator. This method can be called multiple times and will eventually return null when data is no longer splittable |
+| void forEachRemaining(Consumer&lt;T&gt; c) | Processes remaining elements in Spliterator.                                                                                                                                                                  |
+| boolean tryAdvance(Consumer&lt;T&gt; c)    | Processes single element form spliterator if any remain. Returns whether element was processed.                                                                                                               |
 <br>
 
 #### Using Basic Collectors
@@ -192,7 +193,7 @@ private static int range(IntStream ints) {
 | averagingDouble(ToDoubleFunction f) <br>averagingInt(ToIntFunction f) <br>averagingInt(ToLongFunction f)                                          | Calculates averages for three core primitive types                                                           | Double                                                                  |  
 | counting()                                                                                                                                        | Counts number of elements                                                                                    | Long                                                                    |  
 | filtering(Predicate p, Collector c)                                                                                                               | Applies filter before calling downstream collector                                                           | R                                                                       |  
-| groupingBy(Function f) <br>groupingBy(Function f, Collector dc), groupingBy(Function f, Supplier s, Collector c)                                  | Creates map grouping by specified function with optional map type supplier and optional downstream collector | Map<K, List<T>>                                                         | 
+| groupingBy(Function f) <br>groupingBy(Function f, Collector dc) <br>groupingBy(Function f, Supplier s, Collector c)                               | Creates map grouping by specified function with optional map type supplier and optional downstream collector | Map<K, List<T>>                                                         | 
 | joining(CharSequence cs)                                                                                                                          | Creates single String using cs as delimiter between elements if one is specified                             | String                                                                  | 
 | maxBy(Comparator c) <br>minBy(Comparator c)                                                                                                       | Finds largest/smallest elements                                                                              | Optional<T>                                                             |  
 | mapping(Function f, Collector dc)                                                                                                                 | Adds another level of collectors                                                                             | Collector                                                               |  

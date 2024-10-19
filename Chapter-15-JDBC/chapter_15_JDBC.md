@@ -36,7 +36,7 @@ public static void main(String[] args) throws SQLException {
 - **PreparedStatement**, the database software often devises a plan to run the query well and remembers it.
 - **Security**: You are protected against an attack called SQL injection when using a PreparedStatement correctly.
 - **Readability**: It’s nice not to have to deal with string concatenation in building a query string with lots of parameters.
-- **Future use**: Even if your query is being run only once or doesn’t have any parameters, you should still use a PreparedStatement . That way, future editors of the code won’t add a variable and have to remember to change to PreparedStatement then.
+- **Future use**: Even if your query is being run only once or doesn’t have any parameters, you should still use a PreparedStatement. That way, future editors of the code won’t add a variable and have to remember to change to PreparedStatement then.
   <br>
 
 #### Obtaining a PreparedStatement
@@ -51,7 +51,7 @@ try (PreparedStatement ps = conn.prepareStatement("SELECT * FROM exhibits")) {
 <br>
 
 #### Executing a PreparedStatement
-- DELETE , INSERT , or UPDATE, they typically use a method called **executeUpdate()**.
+- DELETE, INSERT, or UPDATE, they typically use a method called **executeUpdate()**.
 <br>
 
 #### Modifying Data with executeUpdate()
@@ -95,9 +95,9 @@ try (var ps = conn.prepareStatement(sql);
 <br>
 
 #### Working with Parameters
-- A **PreparedStatement** allows us to set parameters. Instead of specifying the three values in the SQL, we can use a question mark (?). A bind variable is a placeholder that lets you specify the actual values at runtime.
+- A **PreparedStatement** allows us to set parameters. Instead of specifying the three values in the SQL, we can use a question mark(?). A bind variable is a placeholder that lets you specify the actual values at runtime.
 <br>
--
+
 ```
 String sql = "INSERT INTO names VALUES(?, ?, ?)";
 try (PreparedStatement ps = conn.prepareStatement(sql)) {
